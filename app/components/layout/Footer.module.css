@@ -119,3 +119,38 @@
     margin-bottom: calc(var(--tap-min) + var(--space-8));
   }
 }
+
+.address {
+  font-style: normal;
+  max-width: 16rem;
+  line-height: var(--leading-snug);
+}
+
+/* Social links as small outline pills (text, not icons: keeps the icon set minimal) */
+.socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: var(--space-6) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.socials a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding-inline: var(--space-3);
+  border: 1px solid rgb(255 255 255 / 0.25);
+  border-radius: var(--radius-pill);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--color-white);
+  text-decoration: none;
+  transition: background-color var(--duration-fast), color var(--duration-fast);
+}
+
+.socials a:hover {
+  background: var(--color-white);
+  color: var(--color-ink);
+}

@@ -58,9 +58,24 @@ export function Footer() {
                   <a href={`mailto:${site.email}`}>{site.email}</a>
                 </li>
               )}
-              {site.address && <li className={styles.plain}>{site.address}</li>}
+              {site.address && (
+                <li className={styles.plain}>
+                  <address className={styles.address}>{site.address}</address>
+                </li>
+              )}
               {site.hours && <li className={styles.plain}>{site.hours}</li>}
             </ul>
+            {site.socials.length > 0 && (
+              <ul className={styles.socials} aria-label="CHS Tours on social media">
+                {site.socials.map((s) => (
+                  <li key={s.label}>
+                    <a href={s.url} target="_blank" rel="noopener noreferrer">
+                      {s.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         </nav>
       </div>
