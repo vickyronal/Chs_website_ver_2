@@ -1,21 +1,29 @@
 /*
   DESIGN TOKENS — the single source of truth for colours, type, spacing.
   Components must use these variables (e.g. var(--color-accent)), never raw hex values.
-  Palette is a DRAFT ("Quiet Editorial"); adjust once CHS logo colours are confirmed.
+  Colours follow the official CHS Tours brand palette (2026).
 */
 :root {
-  /* Colour */
-  --color-ink: #14211f;
-  --color-paper: #f7f4ee;
-  --color-sand: #eae3d6;
-  --color-accent: #1f5e55;
-  --color-accent-hover: #174a43;
-  --color-clay: #b5643c;
-  --color-muted: #5e6b68;
-  --color-line: #d8d0c1;
-  --color-white: #ffffff;
-  --color-whatsapp: #25d366;
-  --color-overlay: rgb(20 33 31 / 0.45);
+  /* Brand palette (official) */
+  --brand-red: #ee2124; /* CHS Red: energy, movement */
+  --brand-black: #1a1a1a; /* CHS Black: strength, trust */
+  --brand-white: #ffffff; /* CHS White: clarity, open horizons */
+
+  /* Semantic colours: use THESE in components */
+  --color-ink: var(--brand-black); /* text, dark sections */
+  --color-paper: var(--brand-white); /* page background */
+  --color-surface: #f5f5f4; /* alternate light sections (neutral tint of white) */
+  --color-brand: var(--brand-red); /* large shapes, graphics, highlights, big headings */
+  /* Brand red on white is 4.3:1 contrast, just under the 4.5:1 accessibility minimum
+     for small text. For buttons, links and small red text we use a slightly deeper
+     red (5.3:1) so everything stays readable and passes WCAG AA. */
+  --color-accent: #d41a1d;
+  --color-accent-hover: #b3151a;
+  --color-muted: #5c5c5c; /* secondary text (6.6:1 on white) */
+  --color-line: #e2e2e0; /* borders, dividers */
+  --color-white: var(--brand-white);
+  --color-whatsapp: #25d366; /* WhatsApp glyph only */
+  --color-overlay: rgb(26 26 26 / 0.45); /* dark tint over photos so text is readable */
 
   /* Typography */
   --font-serif: "Fraunces Variable", Georgia, "Times New Roman", serif;

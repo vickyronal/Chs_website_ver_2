@@ -10,7 +10,7 @@
   font-size: var(--text-xs);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-clay);
+  color: var(--color-accent);
 }
 
 .intro {
@@ -31,7 +31,7 @@
 .note {
   white-space: pre-wrap;
   font-size: var(--text-sm);
-  color: var(--color-clay);
+  color: var(--color-accent);
 }
 
 .back {
