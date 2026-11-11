@@ -1,32 +1,38 @@
-# React + TypeScript + Vite
+# CHS Tours – Version 2
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Premium travel website for CHS Tours, built with **React 19 + Vite 8 + TypeScript + React Router 8 (framework mode)**.
 
-Currently, two official plugins are available:
+## Commands
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+| Command | What it does |
+|---|---|
+| `npm run dev` | Start the local site at http://localhost:5173 (auto-reloads as you edit) |
+| `npm run build` | Type-check, then build the final site into `build/client/` |
+| `npm run preview` | Preview the built site locally |
+| `npm run typecheck` | Check TypeScript types only |
+| `npm run lint` | Check code for common mistakes (oxlint) |
 
-## React Compiler
+## How the project is organised
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```
+app/
+  root.tsx           HTML shell shared by every page (fonts, global CSS, <head> tags)
+  routes.ts          THE SITEMAP: every URL and the page file it uses
+  routes/            one file per page
+  components/        reusable UI (ui/, layout/, cards/, sections/, package/, forms/, motion/)
+  content/           ALL business content (later replaced by Sanity CMS)
+  lib/               helpers: seo.ts (page titles/meta), later content.ts, whatsapp.ts
+  types/             TypeScript shapes for content (Package, Destination, …)
+  styles/            tokens.css (colours/type/spacing) + global.css
+react-router.config.ts   ssr: false + prerender → every page is built as real HTML for SEO
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+### Key ideas
+- **Pre-rendering:** `npm run build` creates a real HTML file for each page, so Google and WhatsApp link previews see full content.
+- **Design tokens:** always use CSS variables from `app/styles/tokens.css` (e.g. `var(--color-accent)`), never raw colours.
+- **CSS Modules:** each component has its own `Name.module.css`, so styles never clash.
+- **Content is separate from UI:** business details live in `app/content/`. Placeholders are clearly marked `PLACEHOLDER`.
+- **Page titles/SEO:** each page exports `meta` using `buildMeta()` from `app/lib/seo.ts`.
+
+## Status
+Phase 1 (setup and architecture) is complete. See the full plan for Phases 2–10.

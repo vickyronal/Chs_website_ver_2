@@ -1,0 +1,42 @@
+.stub {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding: var(--section-pad) var(--gutter);
+  display: grid;
+  gap: var(--space-6);
+}
+
+.eyebrow {
+  font-size: var(--text-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-clay);
+}
+
+.intro {
+  max-width: 40rem;
+  font-size: var(--text-lg);
+  color: var(--color-muted);
+}
+
+.phase {
+  justify-self: start;
+  padding: var(--space-2) var(--space-4);
+  border: 1px dashed var(--color-line);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+
+.note {
+  white-space: pre-wrap;
+  font-size: var(--text-sm);
+  color: var(--color-clay);
+}
+
+.back {
+  justify-self: start;
+  min-height: var(--tap-min);
+  display: inline-flex;
+  align-items: center;
+}
