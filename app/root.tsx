@@ -4,7 +4,7 @@ import type { Route } from "./+types/root";
 
 // Self-hosted fonts (no Google Fonts request → faster + more private)
 import "@fontsource-variable/fraunces";
-import "@fontsource-variable/manrope";
+import "@fontsource-variable/inter";
 import "./styles/global.css";
 
 import { PageStub } from "./components/layout/PageStub";

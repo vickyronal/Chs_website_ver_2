@@ -27,7 +27,7 @@
 
   /* Typography */
   --font-serif: "Fraunces Variable", Georgia, "Times New Roman", serif;
-  --font-sans: "Manrope Variable", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-sans: "Inter Variable", system-ui, -apple-system, "Segoe UI", sans-serif;
 
   --text-xs: 0.8125rem; /* 13px */
   --text-sm: 0.875rem; /* 14px */
