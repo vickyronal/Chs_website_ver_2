@@ -1,0 +1,36 @@
+.wrap {
+  width: 100%;
+  pointer-events: none;
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.dashes,
+.trail {
+  fill: none;
+  stroke: var(--color-brand);
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke; /* line stays the same thickness on any screen */
+}
+
+.dashes {
+  stroke-width: 2.5;
+  stroke-dasharray: 2 12;
+  opacity: 0.85;
+}
+
+.trail {
+  stroke-width: 3;
+}
+
+.plane {
+  transition: opacity var(--duration-base);
+}
+
+.dark .plane { fill: var(--color-white); }
+.light .plane { fill: var(--color-ink); }

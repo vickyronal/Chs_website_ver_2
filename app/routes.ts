@@ -32,6 +32,9 @@ export default [
   route("terms", "routes/terms.tsx"),
   route("cancellation-policy", "routes/cancellation-policy.tsx"),
 
+  // Internal: design system review page (hidden from search engines and menus)
+  route("styleguide", "routes/styleguide.tsx"),
+
   // Anything else → 404 page
   route("*", "routes/not-found.tsx"),
 ] satisfies RouteConfig;

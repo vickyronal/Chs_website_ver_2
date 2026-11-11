@@ -1,0 +1,165 @@
+/* ---------- Journey hero preview ---------- */
+/* White frame around a rounded CHS Black panel */
+.heroFrame {
+  padding: 0 clamp(8px, 1.2vw, 16px);
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-frame);
+  background: var(--color-ink);
+  color: var(--color-white);
+  padding-top: clamp(var(--space-16), 10vw, var(--space-32));
+}
+
+.heroText {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: var(--space-8);
+  max-width: 64rem;
+  margin-inline: auto;
+  text-align: center;
+  justify-items: center;
+}
+
+.heroJourney {
+  position: relative;
+  margin-top: var(--space-12);
+}
+
+/* Path sits behind the cards, running through their tops */
+.heroPath {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 0;
+}
+
+.heroCards {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: var(--space-6);
+  margin: 0;
+  padding: clamp(var(--space-12), 9vw, 9rem) var(--gutter) 0;
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.heroCards::-webkit-scrollbar {
+  display: none;
+}
+
+.heroCards > li {
+  flex: 0 0 min(68vw, 300px);
+  scroll-snap-align: center;
+  padding-block: var(--space-4);
+}
+
+@media (min-width: 1024px) {
+  .heroCards {
+    justify-content: center;
+    overflow: visible;
+    gap: clamp(var(--space-6), 3vw, var(--space-12));
+  }
+
+  .heroCards > li {
+    flex-basis: clamp(220px, 20vw, 300px);
+    /* each card sits at a different height along the curve; the bottom one is cut by the panel edge */
+    transform: translateY(var(--lift, 0));
+    margin-bottom: -60px;
+  }
+}
+
+/* ---------- Colour ---------- */
+.swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 11rem), 1fr));
+  gap: var(--space-6);
+}
+
+.swatch {
+  display: grid;
+  gap: var(--space-1);
+  font-size: var(--text-sm);
+}
+
+.chip {
+  height: 96px;
+  margin-bottom: var(--space-2);
+  border-radius: var(--radius-media);
+  border: 1px solid var(--color-line);
+}
+
+.note {
+  color: var(--color-muted);
+  font-size: var(--text-xs);
+}
+
+.measure {
+  max-width: 40rem;
+}
+
+.darkPanel {
+  padding: var(--space-8);
+  border-radius: var(--radius-card);
+  background: var(--color-ink);
+}
+
+/* ---------- Editorial split: text left, slider right ---------- */
+.split {
+  display: grid;
+  /* minmax(0, 1fr): stop the wide slider from stretching the column past the screen */
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-8);
+}
+
+.splitControls {
+  width: min(100%, 22rem);
+}
+
+@media (min-width: 1024px) {
+  .split {
+    grid-template-columns: minmax(18rem, 30%) minmax(0, 1fr);
+    align-items: start;
+    padding-left: max(var(--gutter), calc((100% - var(--container-max)) / 2));
+  }
+
+  .splitText {
+    padding: var(--space-6) 0 0;
+    position: sticky;
+    top: var(--space-24);
+  }
+}
+
+@media (max-width: 1023px) {
+  .split > div:last-child {
+    --edge: var(--gutter);
+  }
+}
+
+/* ---------- Logos ---------- */
+.logos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-6);
+}
+
+.logoLight,
+.logoDark {
+  display: grid;
+  place-items: center;
+  padding: var(--space-8) var(--space-12);
+  border-radius: var(--radius-card);
+}
+
+.logoLight {
+  background: var(--color-white);
+}
+
+.logoDark {
+  border: 1px solid rgb(255 255 255 / 0.15);
+}

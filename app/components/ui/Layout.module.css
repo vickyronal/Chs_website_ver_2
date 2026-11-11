@@ -1,0 +1,41 @@
+.container {
+  width: 100%;
+  max-width: calc(var(--container-max) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  position: relative;
+}
+
+.paper { background: var(--color-paper); color: var(--color-ink); }
+.surface { background: var(--color-surface); color: var(--color-ink); }
+.ink { background: var(--color-ink); color: var(--color-white); }
+
+.spacing-default { padding-block: var(--section-pad); }
+.spacing-compact { padding-block: calc(var(--section-pad) / 2); }
+.spacing-none { padding-block: 0; }
+
+.stack {
+  display: flex;
+  flex-direction: column;
+}
+.align-stretch { align-items: stretch; }
+.align-start { align-items: flex-start; }
+.align-center { align-items: center; text-align: center; }
+
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+/* On phones, buttons in a cluster go full width for easy tapping */
+@media (max-width: 479px) {
+  .cluster > a,
+  .cluster > button {
+    flex: 1 1 100%;
+  }
+}

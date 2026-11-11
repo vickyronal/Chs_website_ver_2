@@ -1,0 +1,134 @@
+.button {
+  --btn-bg: var(--color-accent);
+  --btn-fg: var(--color-white);
+  --btn-border: transparent;
+  --arrow-bg: var(--color-white);
+  --arrow-fg: var(--color-accent);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: var(--tap-min);
+  padding: var(--space-1) var(--space-6);
+  border: 1.5px solid var(--btn-border);
+  border-radius: var(--radius-pill);
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+}
+
+.button:hover {
+  color: var(--btn-fg);
+}
+
+.button:active {
+  transform: scale(0.98);
+}
+
+/* When a button ends in the arrow circle, tighten the right padding so the circle sits snug */
+.button:has(.arrowCircle) {
+  padding-right: var(--space-1);
+}
+
+.label {
+  padding-block: var(--space-2);
+}
+
+/* ---- Variants ---- */
+.primary:hover {
+  --btn-bg: var(--color-accent-hover);
+}
+
+.dark {
+  --btn-bg: var(--color-ink);
+  --arrow-fg: var(--color-ink);
+}
+.dark:hover {
+  --btn-bg: #000;
+}
+
+.outline {
+  --btn-bg: transparent;
+  --btn-fg: var(--color-ink);
+  --btn-border: var(--color-ink);
+  --arrow-bg: var(--color-ink);
+  --arrow-fg: var(--color-white);
+}
+.outline:hover {
+  --btn-bg: var(--color-ink);
+  --btn-fg: var(--color-white);
+  --arrow-bg: var(--color-white);
+  --arrow-fg: var(--color-ink);
+}
+
+/* For dark backgrounds (hero panel, footer) */
+.light {
+  --btn-bg: var(--color-white);
+  --btn-fg: var(--color-ink);
+  --arrow-bg: var(--color-ink);
+  --arrow-fg: var(--color-white);
+}
+.light:hover {
+  --btn-bg: var(--color-surface);
+}
+
+/* Quiet button, e.g. "Explore all" */
+.soft {
+  --btn-bg: var(--color-surface);
+  --btn-fg: var(--color-ink);
+  --arrow-bg: var(--color-ink);
+  --arrow-fg: var(--color-white);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: var(--text-xs);
+}
+.soft:hover {
+  --btn-bg: var(--color-line);
+}
+
+/* ---- Sizes ---- */
+.sm {
+  min-height: 40px;
+  padding-inline: var(--space-4);
+}
+
+.full {
+  width: 100%;
+}
+
+/* ---- The round ↗ arrow ---- */
+.arrowCircle {
+  display: inline-grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--arrow-bg, var(--color-ink));
+  color: var(--arrow-fg, var(--color-white));
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.sm .arrowCircle {
+  width: 32px;
+  height: 32px;
+}
+
+/* Arrow rotates to point right on hover: a small "let's go" moment */
+.button:hover .arrowCircle,
+a:hover > .arrowCircle,
+a:hover .arrowCircle {
+  transform: rotate(45deg);
+}

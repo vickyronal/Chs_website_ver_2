@@ -1,0 +1,73 @@
+.heading {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  line-height: var(--leading-tight);
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  /* Fraunces "SOFT" + "WONK" axes give it a warmer, less stiff feel */
+  font-variation-settings: "SOFT" 50, "WONK" 0;
+}
+
+.display {
+  font-size: var(--text-display);
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+}
+.h1 { font-size: var(--text-h1); }
+.h2 { font-size: var(--text-h2); }
+.h3 { font-size: var(--text-h3); line-height: var(--leading-snug); letter-spacing: -0.01em; }
+
+.start { text-align: start; }
+.center { text-align: center; margin-inline: auto; }
+
+.ink { color: var(--color-ink); }
+.white { color: var(--color-white); }
+
+/* Italic red emphasis — the CHS take on two-tone headlines.
+   Brand red is fine here because headline text is "large text" (3:1 needed). */
+.em {
+  font-style: italic;
+  color: var(--color-brand);
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+}
+
+.muted {
+  color: var(--color-muted);
+}
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.eyebrow-accent { color: var(--color-accent); }
+.eyebrow-muted { color: var(--color-muted); }
+.eyebrow-white { color: var(--color-white); }
+
+.lead {
+  max-width: 38rem;
+  font-size: var(--text-lg);
+  color: var(--color-muted);
+  text-wrap: pretty;
+}
+
+/* Giant edge-cropped type */
+.displayWrap {
+  overflow: hidden;
+  width: 100%;
+}
+
+.mega {
+  font-family: var(--font-serif);
+  font-size: var(--text-mega);
+  line-height: 0.85;
+  white-space: nowrap;
+  letter-spacing: -0.05em;
+  /* nudge left so the first letter bleeds slightly off the edge */
+  margin-left: -0.04em;
+}
+.mega-red { color: var(--color-brand); font-style: italic; }
+.mega-ink { color: var(--color-ink); }
+.mega-faint { color: rgb(255 255 255 / 0.08); }
