@@ -7,7 +7,10 @@ import "@fontsource-variable/fraunces";
 import "@fontsource-variable/inter";
 import "./styles/global.css";
 
+import { Footer } from "./components/layout/Footer";
+import { Header } from "./components/layout/Header";
 import { PageStub } from "./components/layout/PageStub";
+import { StickyContactBar } from "./components/layout/StickyContactBar";
 
 /**
  * Layout = the HTML document shell shared by EVERY page.
@@ -29,9 +32,10 @@ export function Layout({ children }: { children: ReactNode }) {
         <a className="skip-link" href="#main">
           Skip to content
         </a>
-        {/* Header goes here in Phase 3 */}
+        <Header />
         <main id="main">{children}</main>
-        {/* Footer + sticky WhatsApp bar go here in Phase 3 */}
+        <Footer />
+        <StickyContactBar />
         <ScrollRestoration />
         <Scripts />
       </body>

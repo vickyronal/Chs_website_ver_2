@@ -65,7 +65,7 @@
 
   .fan .item {
     /* overlap neighbours slightly */
-    margin-inline: calc(var(--gap) * -1.2);
+    margin-inline: calc(var(--gap) * -0.4);
     z-index: calc(10 - var(--abs));
     /* open state (default): spread into an arc */
     transform: translateY(calc(var(--abs) * var(--abs) * 14px)) rotate(calc(var(--offset) * 6deg));

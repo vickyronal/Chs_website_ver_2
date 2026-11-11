@@ -13,16 +13,18 @@ interface HeadingProps {
   align?: "start" | "center";
   tone?: "ink" | "white";
   className?: string;
+  /** Lets a <Section labelledBy="…"> point at this heading */
+  id?: string;
 }
 
 /**
  * Serif headline. Combine with <Em> and <Muted> for the two-tone effect:
  *   <Heading>Your next <Em>journey</Em> starts here</Heading>
  */
-export function Heading({ children, as: Tag = "h2", size, align = "start", tone = "ink", className }: HeadingProps) {
+export function Heading({ children, as: Tag = "h2", size, align = "start", tone = "ink", className, id }: HeadingProps) {
   const visualSize = size ?? Tag;
   return (
-    <Tag className={[styles.heading, styles[visualSize], styles[align], styles[tone], className].filter(Boolean).join(" ")}>
+    <Tag id={id} className={[styles.heading, styles[visualSize], styles[align], styles[tone], className].filter(Boolean).join(" ")}>
       {children}
     </Tag>
   );
@@ -31,6 +33,18 @@ export function Heading({ children, as: Tag = "h2", size, align = "start", tone 
 /** Emphasised word: italic serif in CHS Red */
 export function Em({ children }: { children: ReactNode }) {
   return <em className={styles.em}>{children}</em>;
+}
+
+/**
+ * Turns copy like "Your next *journey* starts here" into text with the
+ * starred words in italic CHS Red. Lets editors (and later the CMS) control emphasis.
+ */
+export function RichText({ text }: { text: string }) {
+  return (
+    <>
+      {text.split(/\*(.+?)\*/g).map((part, i) => (i % 2 === 1 ? <Em key={i}>{part}</Em> : part))}
+    </>
+  );
 }
 
 /** De-emphasised words: grey, for the black/grey two-tone headline */

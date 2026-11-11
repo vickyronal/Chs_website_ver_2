@@ -12,3 +12,6 @@ export const meta: Route.MetaFunction = () =>
 export default function CorporateTravel() {
   return <PageStub title="Corporate Travel" intro="Group tours, offsites and business travel for companies." phase={5} />;
 }
+
+/** Site-wide WhatsApp buttons on this page start a corporate conversation */
+export const handle = { whatsapp: { kind: "corporate" } };

@@ -9,7 +9,7 @@ import { formatDuration, formatPrice } from "../../lib/format";
 import { ArrowCircle } from "../ui/Button";
 import { Icon } from "../ui/Icon";
 import { Image } from "../ui/Image";
-import { LocationPill } from "../ui/Pills";
+import { LocationPill, Tag } from "../ui/Pills";
 import styles from "./Cards.module.css";
 
 const CARD_SIZES = "(min-width: 1024px) 380px, 78vw";
@@ -67,6 +67,7 @@ export function PackageCard({
   nights,
   days,
   price,
+  sample,
 }: {
   to: string;
   image: ImageName;
@@ -76,11 +77,18 @@ export function PackageCard({
   nights: number;
   days: number;
   price: number | null;
+  /** Shows a "Sample" badge so placeholder packages are never mistaken for real ones */
+  sample?: boolean;
 }) {
   return (
     <Link to={to} className={[styles.card, styles.package].join(" ")}>
       <div className={styles.media}>
         <Image name={image} alt={alt} sizes={CARD_SIZES} />
+        {sample && (
+          <span className={styles.badge}>
+            <Tag tone="dark">Sample</Tag>
+          </span>
+        )}
       </div>
       <div className={styles.packageBody}>
         <p className={styles.packageMeta}>
@@ -104,6 +112,7 @@ export function PolaroidCard({
   location,
   rotate = 0,
   pillSide = "right",
+  priority = false,
 }: {
   to?: string;
   image: ImageName;
@@ -112,11 +121,13 @@ export function PolaroidCard({
   /** degrees, e.g. -4 or 3 */
   rotate?: number;
   pillSide?: "left" | "right";
+  /** Load immediately (use for the first hero cards) */
+  priority?: boolean;
 }) {
   const inner = (
     <>
       <div className={styles.media}>
-        <Image name={image} alt={alt} sizes="(min-width: 1024px) 320px, 70vw" />
+        <Image name={image} alt={alt} sizes="(min-width: 1024px) 320px, 70vw" priority={priority} />
       </div>
       {location && <LocationPill className={styles[`pill-${pillSide}`]}>{location}</LocationPill>}
     </>

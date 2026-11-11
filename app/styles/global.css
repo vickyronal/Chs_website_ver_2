@@ -111,3 +111,8 @@ a:hover {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Mobile menu open: stop the page behind it from scrolling */
+html.menu-open {
+  overflow: hidden;
+}

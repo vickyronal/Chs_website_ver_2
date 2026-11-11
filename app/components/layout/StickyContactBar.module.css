@@ -1,0 +1,58 @@
+.bar {
+  position: fixed;
+  inset: auto var(--space-3) calc(var(--space-3) + env(safe-area-inset-bottom));
+  z-index: 40;
+  display: flex;
+  gap: var(--space-2);
+  padding: var(--space-2);
+  border-radius: var(--radius-pill);
+  background: rgb(255 255 255 / 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-line);
+  box-shadow: var(--shadow-float);
+}
+
+.whatsapp,
+.call {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: var(--tap-min);
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  text-decoration: none;
+}
+
+.whatsapp {
+  flex: 1;
+  background: var(--color-accent);
+  color: var(--color-white);
+}
+
+.whatsapp:hover {
+  color: var(--color-white);
+  background: var(--color-accent-hover);
+}
+
+.call {
+  width: var(--tap-min);
+  background: var(--color-ink);
+  color: var(--color-white);
+}
+
+.call:hover {
+  color: var(--color-white);
+}
+
+@media (min-width: 768px) {
+  .bar {
+    display: none;
+  }
+}
+
+:global(html.menu-open) .bar {
+  display: none;
+}
