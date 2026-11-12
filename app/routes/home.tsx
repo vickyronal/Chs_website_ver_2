@@ -8,7 +8,7 @@ import {
   QuickFinder,
   ServicesList,
   ThemeSlider,
-  WhyChsFan,
+  WhyChsBento,
 } from "../components/sections/HomeSections";
 import { site } from "../content/site";
 import { getDestinations, getFeaturedPackages, getHomeContent, getThemes } from "../lib/content";
@@ -47,7 +47,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
       <ThemeSlider themes={themes} />
       <FeaturedPackages packages={packages} destinations={destinations} />
       <DestinationShowcase destinations={destinations} />
-      <WhyChsFan reasons={reasons} photos={themes.map((t) => t.photo)} />
+      <WhyChsBento reasons={reasons} photo={themes.find((t) => t.slug === "family")?.photo ?? themes[0]?.photo} whatsapp={whatsapp} />
       <CorporateBand {...corporate} whatsapp={whatsappLink({ kind: "corporate" })} />
       <ServicesList services={services} />
       {/* Testimonials appear here once CHS supplies real reviews (none are shown until then) */}

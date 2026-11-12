@@ -42,18 +42,44 @@
   color: rgb(255 255 255 / 0.58);
 }
 
+/* Section label: a small pill with a dot, e.g. "• OUR TOURS" */
 .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: fit-content;
+  padding: 5px 12px 5px 10px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  background: rgb(255 255 255 / 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   font-family: var(--font-sans);
-  font-size: var(--type-label);
+  font-size: 0.6875rem; /* 11px */
   font-weight: var(--weight-semibold);
   line-height: 1.4;
-  letter-spacing: var(--tracking-label);
+  letter-spacing: 0.12em;
   text-transform: uppercase;
+  color: var(--color-ink);
 }
-.eyebrow-accent { color: var(--color-accent); }
+
+.eyebrow::before {
+  content: "";
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-brand);
+}
+
 .eyebrow-muted { color: var(--color-muted); }
-.eyebrow-white { color: var(--color-white); }
-.eyebrow-ink { color: var(--color-ink); }
+
+/* On dark panels or photos: a glass pill */
+.eyebrow-white {
+  border-color: rgb(255 255 255 / 0.22);
+  background: rgb(255 255 255 / 0.12);
+  color: var(--color-white);
+}
 
 .lead {
   max-width: 36rem;

@@ -135,3 +135,42 @@ a:hover > .arrowCircle,
 a:hover .arrowCircle {
   transform: rotate(45deg);
 }
+
+/* ---- Split: pill + separate round arrow button, read as one link ---- */
+.split,
+.split:has(.arrowCircle) {
+  gap: 4px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.split:active {
+  transform: none;
+}
+
+.splitLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--tap-min);
+  padding-inline: var(--space-6);
+  border: 1.5px solid var(--btn-border);
+  border-radius: var(--radius-pill);
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  transition: background-color var(--duration-fast) var(--ease-out);
+}
+
+.split .splitArrow {
+  width: var(--tap-min);
+  height: var(--tap-min);
+  border: 1.5px solid var(--btn-border);
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+}
+
+.sm .splitLabel { min-height: 40px; padding-inline: var(--space-4); }
+.split.sm .splitArrow { width: 40px; height: 40px; }
+
+.full.split .splitLabel { flex: 1; justify-content: center; }

@@ -11,8 +11,12 @@ interface BaseProps {
   size?: "md" | "sm";
   /** Small icon before the label, e.g. "whatsapp" or "phone" */
   icon?: IconName;
-  /** Round ↗ arrow at the end (the signature CHS button) */
-  arrow?: boolean;
+  /**
+   * Round ↗ arrow:
+   *   true    → inside the pill (the WhatsApp button)
+   *   "split" → as a separate round button beside the pill: [ See all tours ] (↗)
+   */
+  arrow?: boolean | "split";
   fullWidth?: boolean;
   className?: string;
 }
@@ -35,11 +39,20 @@ export type ButtonAllProps = LinkProps | AnchorProps | ButtonProps;
  */
 export function Button(props: ButtonAllProps) {
   const { children, variant = "primary", size = "md", icon, arrow, fullWidth, className } = props;
-  const classes = [styles.button, styles[variant], styles[size], fullWidth && styles.full, className]
+  const split = arrow === "split";
+  const classes = [styles.button, styles[variant], styles[size], split && styles.split, fullWidth && styles.full, className]
     .filter(Boolean)
     .join(" ");
 
-  const content = (
+  const content = split ? (
+    <>
+      <span className={styles.splitLabel}>
+        {icon && <Icon name={icon} size={size === "sm" ? 16 : 18} />}
+        {children}
+      </span>
+      <ArrowCircle className={styles.splitArrow} />
+    </>
+  ) : (
     <>
       {icon && <Icon name={icon} size={size === "sm" ? 16 : 18} />}
       <span className={styles.label}>{children}</span>

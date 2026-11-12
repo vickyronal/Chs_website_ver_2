@@ -7,8 +7,8 @@ import { Form, Link } from "react-router";
 import { MONTHS } from "../../lib/filters";
 import type { Destination, HolidayPackage, Reason, Region, Theme } from "../../types/content";
 import { Carousel } from "../carousel/Carousel";
-import { OverlayCard, PackageCard, PhotoLabelCard, PolaroidCard, TextCard } from "../cards/Cards";
-import { ArrowCircle, Button } from "../ui/Button";
+import { OverlayCard, PackageCard, PhotoLabelCard } from "../cards/Cards";
+import { Button } from "../ui/Button";
 import { Icon } from "../ui/Icon";
 import { Image } from "../ui/Image";
 import { Cluster, Container, Section, Stack } from "../ui/Layout";
@@ -25,43 +25,53 @@ export function QuickFinder({ destinations, themes }: { destinations: Destinatio
     <div className={styles.finderWrap}>
       <Form method="get" action="/holidays" className={styles.finder} aria-label="Find a holiday">
         <label className={styles.field}>
-          <span className={styles.fieldLabel}>Where</span>
-          <select name="where" defaultValue="">
-            <option value="">Anywhere</option>
-            <option value="india">India</option>
-            <option value="international">International</option>
-            {destinations.map((d) => (
-              <option key={d.slug} value={d.slug}>
-                {d.name}
-              </option>
-            ))}
-          </select>
+          <Icon name="pin" size={18} className={styles.fieldIcon} />
+          <span className={styles.fieldText}>
+            <span className={styles.fieldLabel}>Where</span>
+            <select name="where" defaultValue="">
+              <option value="">Anywhere</option>
+              <option value="india">India</option>
+              <option value="international">International</option>
+              {destinations.map((d) => (
+                <option key={d.slug} value={d.slug}>
+                  {d.name}
+                </option>
+              ))}
+            </select>
+          </span>
         </label>
         <label className={styles.field}>
-          <span className={styles.fieldLabel}>Kind of holiday</span>
-          <select name="theme" defaultValue="">
-            <option value="">Any</option>
-            {themes.map((t) => (
-              <option key={t.slug} value={t.slug}>
-                {t.name}
-              </option>
-            ))}
-          </select>
+          <Icon name="compass" size={18} className={styles.fieldIcon} />
+          <span className={styles.fieldText}>
+            <span className={styles.fieldLabel}>Kind of holiday</span>
+            <select name="theme" defaultValue="">
+              <option value="">Any</option>
+              {themes.map((t) => (
+                <option key={t.slug} value={t.slug}>
+                  {t.name}
+                </option>
+              ))}
+            </select>
+          </span>
         </label>
         <label className={styles.field}>
-          <span className={styles.fieldLabel}>When</span>
-          <select name="month" defaultValue="">
-            <option value="">Not sure yet</option>
-            {MONTHS.map((m) => (
-              <option key={m} value={m.slice(0, 3).toLowerCase()}>
-                {m}
-              </option>
-            ))}
-          </select>
+          <Icon name="calendar" size={18} className={styles.fieldIcon} />
+          <span className={styles.fieldText}>
+            <span className={styles.fieldLabel}>When</span>
+            <select name="month" defaultValue="">
+              <option value="">Not sure yet</option>
+              {MONTHS.map((m) => (
+                <option key={m} value={m.slice(0, 3).toLowerCase()}>
+                  {m}
+                </option>
+              ))}
+            </select>
+          </span>
         </label>
-        <Button type="submit" variant="dark" arrow>
-          Find holidays
-        </Button>
+        <button type="submit" className={styles.finderSubmit}>
+          <Icon name="search" size={20} />
+          <span className={styles.finderSubmitText}>Find holidays</span>
+        </button>
       </Form>
     </div>
   );
@@ -89,7 +99,7 @@ export function ThemeSlider({ themes }: { themes: Theme[] }) {
       </Carousel>
       <Container>
         <Stack align="center">
-          <Button to="/experiences" variant="soft">
+          <Button to="/experiences" variant="dark" arrow="split">
             Explore all
           </Button>
         </Stack>
@@ -114,7 +124,7 @@ export function FeaturedPackages({ packages, destinations }: { packages: Holiday
               Ready-made trips, <Muted>planned down to the day</Muted>
             </Heading>
           </Stack>
-          <Button to="/holidays" variant="outline" arrow>
+          <Button to="/holidays" variant="dark" arrow="split">
             All holidays
           </Button>
         </div>
@@ -196,9 +206,9 @@ export function DestinationShowcase({ destinations }: { destinations: Destinatio
               ))}
             </ol>
 
-            <Link to="/destinations" className={styles.textLink}>
-              All destinations <ArrowCircle />
-            </Link>
+            <Button to="/destinations" variant="dark" arrow="split">
+              All destinations
+            </Button>
           </div>
 
           {/* Large image of the active destination (crossfade) */}
@@ -247,33 +257,51 @@ export function DestinationShowcase({ destinations }: { destinations: Destinatio
 }
 
 /* ---------------------------------------------------------------
-   WHY CHS — fan of reason cards and photos
+   WHY CHS — bento grid
+   One tall photo tile + reason tiles in three tones (light, CHS red, dark).
+   Only verified reasons from the content file: no invented numbers.
 ---------------------------------------------------------------- */
-export function WhyChsFan({ reasons, photos }: { reasons: Reason[]; photos: { image: Theme["photo"]["image"]; alt: string }[] }) {
+const BENTO_TONES = ["light", "red", "dark", "light"] as const;
+
+export function WhyChsBento({ reasons, photo, whatsapp }: { reasons: Reason[]; photo?: { image: Theme["photo"]["image"]; alt: string }; whatsapp: string | null }) {
   if (reasons.length === 0) return null;
-  // Reason cards fanned around one photo in the centre (max 5 cards so text stays readable)
+  const pad = (n: number) => String(n).padStart(2, "0");
   const shown = reasons.slice(0, 4);
-  const textCards = shown.map((r) => (
-    <TextCard key={r.title} title={r.title}>
-      {r.body}
-    </TextCard>
-  ));
-  const mid = Math.ceil(textCards.length / 2);
-  const centre = photos[0] ? [<PolaroidCard key="photo" image={photos[0].image} alt={photos[0].alt} />] : [];
-  const cards = [...textCards.slice(0, mid), ...centre, ...textCards.slice(mid)];
 
   return (
-    <Section labelledBy="why-heading" className={styles.why}>
-      <Carousel label="Why travel with CHS Tours" variant="fan" itemWidth="clamp(240px, 70vw, 270px)">
-        {cards}
-      </Carousel>
+    <Section labelledBy="why-heading">
       <Container>
         <Stack gap={4} align="center">
-          <Eyebrow>The CHS difference</Eyebrow>
+          <Eyebrow>Why CHS Tours</Eyebrow>
           <Heading id="why-heading" align="center">
             Why travel <Em>with us</Em>
           </Heading>
         </Stack>
+
+        <div className={styles.bento}>
+          {photo && (
+            <figure className={[styles.tile, styles.tilePhoto].join(" ")}>
+              <Image name={photo.image} alt={photo.alt} sizes="(min-width: 1024px) 34vw, 100vw" />
+              <figcaption className={styles.tileGlass}>
+                <span>Planned with you, start to finish</span>
+                {whatsapp && (
+                  <Button href={whatsapp} icon="whatsapp" size="sm">
+                    Plan on WhatsApp
+                  </Button>
+                )}
+              </figcaption>
+            </figure>
+          )}
+          {shown.map((r, i) => (
+            <div key={r.title} className={[styles.tile, styles[`tile-${BENTO_TONES[i]}`]].join(" ")}>
+              <span className={styles.tileNum}>{pad(i + 1)}</span>
+              <div>
+                <h3 className={styles.tileTitle}>{r.title}</h3>
+                <p className={styles.tileBody}>{r.body}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </Container>
     </Section>
   );
@@ -313,7 +341,7 @@ export function CorporateBand({
             ))}
           </ul>
           <Cluster>
-            <Button to="/corporate-travel" variant="light" arrow>
+            <Button to="/corporate-travel" variant="light" arrow="split">
               Corporate travel
             </Button>
             {whatsapp && (

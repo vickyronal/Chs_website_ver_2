@@ -14,7 +14,10 @@ export type IconName =
   | "phone"
   | "plane"
   | "menu"
-  | "close";
+  | "close"
+  | "search"
+  | "calendar"
+  | "compass";
 
 const paths: Record<IconName, ReactNode> = {
   "arrow-up-right": <path d="M7 17 17 7M8 7h9v9" />,
@@ -47,6 +50,24 @@ const paths: Record<IconName, ReactNode> = {
   ),
   menu: <path d="M4 8h16M4 16h16" />,
   close: <path d="M6 6l12 12M18 6 6 18" />,
+  search: (
+    <>
+      <circle cx="11" cy="11" r="7" />
+      <path d="m20 20-3.5-3.5" />
+    </>
+  ),
+  calendar: (
+    <>
+      <rect x="3" y="5" width="18" height="16" rx="2" />
+      <path d="M16 3v4M8 3v4M3 10h18" />
+    </>
+  ),
+  compass: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="m15.5 8.5-2 5-5 2 2-5z" />
+    </>
+  ),
 };
 
 interface IconProps {

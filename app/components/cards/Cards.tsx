@@ -57,7 +57,7 @@ export function OverlayCard({
   );
 }
 
-/* 3. PACKAGE — the core product card */
+/* 3. PACKAGE — the core product card: photo with title, duration and price on the image */
 export function PackageCard({
   to,
   image,
@@ -84,21 +84,19 @@ export function PackageCard({
     <Link to={to} className={[styles.card, styles.package].join(" ")}>
       <div className={styles.media}>
         <Image name={image} alt={alt} sizes={CARD_SIZES} />
-        {sample && (
-          <span className={styles.badge}>
-            <Tag tone="dark">Sample</Tag>
-          </span>
-        )}
       </div>
+      {sample && (
+        <span className={styles.badge}>
+          <Tag tone="dark">Sample</Tag>
+        </span>
+      )}
+      <ArrowCircle className={styles.packageArrow} />
       <div className={styles.packageBody}>
         <p className={styles.packageMeta}>
           {destination} · {formatDuration(nights, days)}
         </p>
         <h3 className={styles.packageTitle}>{title}</h3>
-        <div className={styles.packageFooter}>
-          <span className={styles.price}>{formatPrice(price)}</span>
-          <ArrowCircle />
-        </div>
+        <p className={styles.price}>{formatPrice(price)}</p>
       </div>
     </Link>
   );
