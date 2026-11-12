@@ -15,9 +15,10 @@
   border-radius: var(--radius-pill);
   background: var(--btn-bg);
   color: var(--btn-fg);
-  font-weight: 600;
-  font-size: var(--text-sm);
-  letter-spacing: 0.01em;
+  font-family: var(--font-sans);
+  font-weight: var(--weight-medium);
+  font-size: var(--type-ui);
+  letter-spacing: var(--tracking-ui);
   line-height: 1.2;
   text-decoration: none;
   white-space: nowrap;
@@ -91,8 +92,9 @@
   --arrow-bg: var(--color-ink);
   --arrow-fg: var(--color-white);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-label);
+  font-size: var(--type-label);
+  font-weight: var(--weight-semibold);
 }
 .soft:hover {
   --btn-bg: var(--color-line);
@@ -102,6 +104,7 @@
 .sm {
   min-height: 40px;
   padding-inline: var(--space-4);
+  font-size: var(--type-small);
 }
 
 .full {

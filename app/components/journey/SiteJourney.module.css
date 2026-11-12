@@ -1,0 +1,95 @@
+/* ---------- Desktop route layer ---------- */
+.layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 30; /* above page content, below the header (50) */
+  width: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.svg {
+  display: block;
+}
+
+.measure {
+  fill: none;
+  stroke: none;
+}
+
+.dashes,
+.trail {
+  fill: none;
+  stroke: var(--color-brand);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.dashes {
+  stroke-width: 1.5;
+  stroke-dasharray: 2 10;
+  opacity: 0.55;
+}
+
+.trail {
+  stroke-width: 2;
+  opacity: 0.9;
+}
+
+/* Red plane with a thin white outline: visible on white, grey and black sections */
+.plane path {
+  fill: var(--color-brand);
+  stroke: var(--color-white);
+  stroke-width: 1.4;
+  paint-order: stroke;
+  filter: drop-shadow(0 4px 6px rgb(26 26 26 / 0.25));
+}
+
+/* ---------- Journey bar (phones / tablets) ---------- */
+.bar {
+  position: absolute;
+  left: clamp(20px, 3vw, 40px);
+  right: clamp(20px, 3vw, 40px);
+  bottom: -2px;
+  height: 14px;
+  pointer-events: none;
+}
+
+.barTrack {
+  position: relative;
+  height: 100%;
+}
+
+/* dashed route */
+.barTrack::before {
+  content: "";
+  position: absolute;
+  inset: 6px 0 auto;
+  height: 2px;
+  background: repeating-linear-gradient(90deg, var(--color-brand) 0 2px, transparent 2px 8px);
+  opacity: 0.45;
+}
+
+.barTrail {
+  position: absolute;
+  inset: 6px 0 auto;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--color-brand);
+  transform-origin: left center;
+}
+
+.barPlane {
+  position: absolute;
+  top: 0;
+  margin-left: -7px;
+  line-height: 0;
+}
+
+.barPlane path {
+  fill: var(--color-brand);
+  stroke: var(--color-white);
+  stroke-width: 1.5;
+  paint-order: stroke;
+}

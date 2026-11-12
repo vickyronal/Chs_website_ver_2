@@ -3,7 +3,8 @@ import type { ReactNode } from "react";
 import type { Route } from "./+types/root";
 
 // Self-hosted fonts (no Google Fonts request → faster + more private)
-import "@fontsource-variable/fraunces";
+import "@fontsource/instrument-serif/latin-400.css";
+import "@fontsource/instrument-serif/latin-400-italic.css";
 import "@fontsource-variable/inter";
 import "./styles/global.css";
 
@@ -11,6 +12,7 @@ import { Footer } from "./components/layout/Footer";
 import { Header } from "./components/layout/Header";
 import { PageStub } from "./components/layout/PageStub";
 import { StickyContactBar } from "./components/layout/StickyContactBar";
+import { SiteJourneyLayer } from "./components/journey/SiteJourneyLayer";
 
 /**
  * Layout = the HTML document shell shared by EVERY page.
@@ -36,6 +38,7 @@ export function Layout({ children }: { children: ReactNode }) {
         <main id="main">{children}</main>
         <Footer />
         <StickyContactBar />
+        <SiteJourneyLayer />
         <ScrollRestoration />
         <Scripts />
       </body>

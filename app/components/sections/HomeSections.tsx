@@ -6,10 +6,10 @@ import { useState } from "react";
 import { Form, Link } from "react-router";
 import { MONTHS } from "../../lib/filters";
 import type { Destination, HolidayPackage, Reason, Region, Theme } from "../../types/content";
-import { Carousel, CarouselControls } from "../carousel/Carousel";
-import { useCarousel } from "../carousel/useCarousel";
+import { Carousel } from "../carousel/Carousel";
 import { OverlayCard, PackageCard, PhotoLabelCard, PolaroidCard, TextCard } from "../cards/Cards";
 import { ArrowCircle, Button } from "../ui/Button";
+import { Icon } from "../ui/Icon";
 import { Image } from "../ui/Image";
 import { Cluster, Container, Section, Stack } from "../ui/Layout";
 import { PillToggle } from "../ui/Pills";
@@ -140,20 +140,26 @@ export function FeaturedPackages({ packages, destinations }: { packages: Holiday
 }
 
 /* ---------------------------------------------------------------
-   POPULAR DESTINATIONS — editorial split with India/International toggle
+   POPULAR DESTINATIONS — editorial showcase
+   Tablet/desktop: numbered destination index (left) + one large image (right)
+   that crossfades to whichever destination you hover, focus or step to.
+   Phones: the familiar swipe carousel.
 ---------------------------------------------------------------- */
-export function DestinationSplit({ destinations }: { destinations: Destination[] }) {
+export function DestinationShowcase({ destinations }: { destinations: Destination[] }) {
   const regions = (["india", "international"] as Region[]).filter((r) => destinations.some((d) => d.region === r));
   const [region, setRegion] = useState<Region>(regions.includes("india") ? "india" : "international");
-  const api = useCarousel();
+  const [active, setActive] = useState(0);
   if (destinations.length === 0) return null;
   const shown = destinations.filter((d) => d.region === region);
+  const current = shown[Math.min(active, shown.length - 1)];
+  const pad = (n: number) => String(n).padStart(2, "0");
+  const step = (dir: 1 | -1) => setActive((i) => (i + dir + shown.length) % shown.length);
 
   return (
     <Section labelledBy="destinations-heading">
-      <div className={styles.split}>
-        <div className={styles.splitText}>
-          <Stack gap={6} align="start">
+      <Container>
+        <div className={styles.showcase}>
+          <div className={styles.showcaseText}>
             <Eyebrow>Popular destinations</Eyebrow>
             <Heading id="destinations-heading">
               Places worth the <Em>journey</Em>
@@ -165,25 +171,72 @@ export function DestinationSplit({ destinations }: { destinations: Destination[]
                 value={region}
                 onChange={(r) => {
                   setRegion(r);
-                  api.trackRef.current?.scrollTo({ left: 0 });
+                  setActive(0);
                 }}
                 options={regions.map((r) => ({ value: r, label: r === "india" ? "India" : "International" }))}
               />
             )}
-            <CarouselControls api={api} className={styles.splitControls} />
+
+            {/* Numbered index: hover or focus previews, click opens the destination */}
+            <ol className={styles.destIndex}>
+              {shown.map((d, i) => (
+                <li key={d.slug}>
+                  <Link
+                    to={`/destinations/${d.slug}`}
+                    className={[styles.destRow, d === current && styles.destRowActive].filter(Boolean).join(" ")}
+                    onMouseEnter={() => setActive(i)}
+                    onFocus={() => setActive(i)}
+                    aria-current={d === current ? "true" : undefined}
+                  >
+                    <span className={styles.destNum}>{pad(i + 1)}</span>
+                    <span className={styles.destName}>{d.name}</span>
+                    <span className={styles.destArea}>{d.area}</span>
+                  </Link>
+                </li>
+              ))}
+            </ol>
+
             <Link to="/destinations" className={styles.textLink}>
               All destinations <ArrowCircle />
             </Link>
-          </Stack>
+          </div>
+
+          {/* Large image of the active destination (crossfade) */}
+          <div className={styles.showcaseMedia}>
+            {shown.map((d) => (
+              <div key={d.slug} className={[styles.showcaseImage, d === current && styles.showcaseImageActive].filter(Boolean).join(" ")} aria-hidden={d !== current}>
+                <Image name={d.photo.image} alt={d.photo.alt} sizes="(min-width: 1024px) 40vw, 50vw" />
+              </div>
+            ))}
+            <div className={styles.showcaseCaption}>
+              <p className={styles.showcaseCount}>
+                {pad(shown.indexOf(current) + 1)} <span>/ {pad(shown.length)}</span>
+              </p>
+              <p className={styles.showcaseName}>{current.name}</p>
+              <p className={styles.showcaseArea}>{current.area}</p>
+              <div className={styles.showcaseActions}>
+                <Button to={`/destinations/${current.slug}`} variant="light" size="sm" arrow>
+                  Explore {current.name}
+                </Button>
+                {shown.length > 1 && (
+                  <div className={styles.showcaseArrows}>
+                    <button type="button" onClick={() => step(-1)} aria-label="Previous destination">
+                      <Icon name="arrow-left" size={18} />
+                    </button>
+                    <button type="button" onClick={() => step(1)} aria-label="Next destination">
+                      <Icon name="arrow-right" size={18} />
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
         </div>
-        <Carousel
-          label={`${region === "india" ? "India" : "International"} destinations`}
-          variant="staggered"
-          controls="none"
-          api={api}
-          bleed={false}
-          itemWidth="clamp(240px, 70vw, 340px)"
-        >
+      </Container>
+
+      {/* Phones: swipe carousel */}
+      <div className={styles.showcaseMobile}>
+        <Carousel label={`${region === "india" ? "India" : "International"} destinations`} itemWidth="clamp(240px, 74vw, 340px)">
           {shown.map((d) => (
             <OverlayCard key={d.slug} to={`/destinations/${d.slug}`} image={d.photo.image} alt={d.photo.alt} title={d.name} subtitle={d.area} />
           ))}
@@ -276,30 +329,44 @@ export function CorporateBand({
 }
 
 /* ---------------------------------------------------------------
-   SERVICES list
+   WHAT WE DO — editorial statement + numbered columns
+   One sentence names every service (each name is a link), then four
+   numbered columns give the one-line detail. No cards, no icons.
 ---------------------------------------------------------------- */
 export function ServicesList({ services }: { services: { title: string; body: string; to: string }[] }) {
+  if (services.length === 0) return null;
+  const pad = (n: number) => String(n).padStart(2, "0");
+
   return (
     <Section labelledBy="services-heading">
       <Container>
-        <div className={styles.services}>
-          <Stack gap={4} align="start">
-            <Eyebrow>What we do</Eyebrow>
-            <Heading id="services-heading">
-              Travel, <Muted>sorted end to end</Muted>
-            </Heading>
-          </Stack>
-          <ul className={styles.serviceRows}>
-            {services.map((s) => (
-              <li key={s.title}>
-                <Link to={s.to} className={styles.serviceRow}>
-                  <span className={styles.serviceTitle}>{s.title}</span>
-                  <span className={styles.serviceBody}>{s.body}</span>
-                  <ArrowCircle />
+        <div className={styles.whatWeDo}>
+          <Eyebrow>What we do</Eyebrow>
+          <h2 id="services-heading" className={styles.statement}>
+            We plan{" "}
+            {services.map((s, i) => (
+              <span key={s.title}>
+                <Link to={s.to} className={styles.statementLink}>
+                  {s.title.toLowerCase()}
+                </Link>
+                {i < services.length - 2 ? ", " : i === services.length - 2 ? " and " : ""}
+              </span>
+            ))}
+            <span className={styles.statementMuted}>, all from one conversation.</span>
+          </h2>
+
+          <ol className={styles.serviceCols}>
+            {services.map((s, i) => (
+              <li key={s.title} className={styles.serviceCol}>
+                <span className={styles.serviceNum}>{pad(i + 1)}</span>
+                <h3 className={styles.serviceTitle}>{s.title}</h3>
+                <p className={styles.serviceBody}>{s.body}</p>
+                <Link to={s.to} className={styles.serviceLink} aria-label={`Explore ${s.title}`}>
+                  Explore <Icon name="arrow-right" size={16} />
                 </Link>
               </li>
             ))}
-          </ul>
+          </ol>
         </div>
       </Container>
     </Section>

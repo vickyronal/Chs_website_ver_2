@@ -2,7 +2,7 @@ import type { Route } from "./+types/home";
 import { JourneyHero } from "../components/sections/JourneyHero";
 import {
   CorporateBand,
-  DestinationSplit,
+  DestinationShowcase,
   FeaturedPackages,
   FinalCta,
   QuickFinder,
@@ -46,7 +46,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
       <QuickFinder destinations={destinations} themes={themes} />
       <ThemeSlider themes={themes} />
       <FeaturedPackages packages={packages} destinations={destinations} />
-      <DestinationSplit destinations={destinations} />
+      <DestinationShowcase destinations={destinations} />
       <WhyChsFan reasons={reasons} photos={themes.map((t) => t.photo)} />
       <CorporateBand {...corporate} whatsapp={whatsappLink({ kind: "corporate" })} />
       <ServicesList services={services} />

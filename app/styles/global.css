@@ -21,9 +21,14 @@ body {
   background: var(--color-paper);
   color: var(--color-ink);
   font-family: var(--font-sans);
-  font-size: var(--text-base);
+  font-size: var(--type-body);
+  font-weight: var(--weight-regular);
   line-height: var(--leading-body);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  /* Inter "ss01" = open digits: calmer, more legible numbers in prices, dates and phone numbers */
+  font-feature-settings: "ss01";
 }
 
 img,
@@ -47,14 +52,15 @@ h1,
 h2,
 h3 {
   font-family: var(--font-serif);
-  font-weight: 400;
-  line-height: var(--leading-tight);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-heading);
+  letter-spacing: var(--tracking-heading);
   text-wrap: balance;
 }
 
-h1 { font-size: var(--text-h1); }
-h2 { font-size: var(--text-h2); }
-h3 { font-size: var(--text-h3); line-height: var(--leading-snug); }
+h1 { font-size: var(--type-h1); }
+h2 { font-size: var(--type-h2); }
+h3 { font-size: var(--type-h3); line-height: var(--leading-title); }
 
 p {
   text-wrap: pretty;

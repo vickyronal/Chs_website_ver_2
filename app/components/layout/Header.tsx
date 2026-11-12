@@ -11,6 +11,8 @@ import { getDestinations, getThemes } from "../../lib/content";
 import { phoneLink } from "../../lib/contact";
 import { usePageWhatsApp } from "../../lib/usePageWhatsApp";
 import { site } from "../../content/site";
+import { JourneyBar } from "../journey/SiteJourney";
+import { useJourneyMode } from "../journey/useJourneyMode";
 import { Button } from "../ui/Button";
 import { Icon } from "../ui/Icon";
 import { Logo } from "../ui/Logo";
@@ -22,6 +24,7 @@ export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
   const whatsapp = usePageWhatsApp();
+  const journeyMode = useJourneyMode();
   const megaId = useId();
   const menuId = useId();
   const megaRef = useRef<HTMLLIElement>(null);
@@ -167,6 +170,9 @@ export function Header() {
           </button>
         </div>
       </div>
+
+      {/* Phones/tablets: slim journey bar under the header (desktop gets the full route) */}
+      {journeyMode === "bar" && !mobileOpen && <JourneyBar />}
 
       {/* ---------- Mobile full-screen menu ---------- */}
       <div id={menuId} className={styles.mobileMenu} hidden={!mobileOpen}>

@@ -34,3 +34,10 @@
 
 .dark .plane { fill: var(--color-white); }
 .light .plane { fill: var(--color-ink); }
+
+/* When the site-wide journey is flying (desktop), it owns the plane and trail:
+   hide this curve's own copies so there is only ever one plane. */
+:global(html[data-journey="route"]) .plane,
+:global(html[data-journey="route"]) .trail {
+  display: none;
+}

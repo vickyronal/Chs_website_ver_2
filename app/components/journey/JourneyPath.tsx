@@ -7,10 +7,10 @@
 */
 import { useEffect, useRef } from "react";
 import { motion, useMotionValueEvent, useReducedMotion, useScroll, useTransform } from "motion/react";
+import { PLANE_D, SWOOSH } from "./shapes";
 import styles from "./JourneyPath.module.css";
 
-// The swoosh: rises, dips, rises again (viewBox 1440 × 260)
-const PATH = "M-40 214 C 170 214 250 74 470 82 C 690 90 770 222 995 194 C 1225 166 1290 46 1480 52";
+const PATH = `M${SWOOSH.start.join(" ")} ${SWOOSH.curves.map((c) => `C ${c.join(" ")}`).join(" ")}`;
 
 interface JourneyPathProps {
   /** "dark" = on the black hero panel (white plane); "light" = on white sections (black plane) */
@@ -51,14 +51,15 @@ export function JourneyPath({ tone = "dark", className }: JourneyPathProps) {
 
   return (
     <div ref={wrapRef} className={[styles.wrap, styles[tone], className].filter(Boolean).join(" ")} aria-hidden="true">
-      <svg viewBox="0 0 1440 260" className={styles.svg} preserveAspectRatio="xMidYMid meet">
+      {/* data-journey-start: the site-wide journey begins on this curve */}
+      <svg viewBox="0 0 1440 260" className={styles.svg} preserveAspectRatio="xMidYMid meet" data-journey-start="">
         <path ref={pathRef} d={PATH} className={styles.dashes} />
         {!reduceMotion && <motion.path d={PATH} className={styles.trail} style={{ pathLength: progress }} />}
         <g ref={planeRef} className={styles.plane} style={{ opacity: 0 }}>
           {/* plane silhouette pointing right, centred on the path */}
           <path
             transform="translate(-22 -22) scale(1.85)"
-            d="M21.5 12c0-.9-.8-1.5-1.7-1.5H14.6L10 3H8l2.6 7.5H5.4L3.6 8H2l1.2 4L2 16h1.6l1.8-2.5h5.2L8 21h2l4.6-7.5h5.2c.9 0 1.7-.6 1.7-1.5Z"
+            d={PLANE_D}
           />
         </g>
       </svg>

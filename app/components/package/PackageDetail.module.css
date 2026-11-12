@@ -115,7 +115,8 @@
 
 .dayTitle {
   font-family: var(--font-serif);
-  font-size: var(--text-lg);
+  font-size: var(--text-title);
+  line-height: var(--leading-title);
 }
 
 .chevron {
@@ -156,7 +157,7 @@ details[open] .chevron {
 
 .listTitle {
   margin-bottom: var(--space-4);
-  font-size: var(--text-lg);
+  font-size: var(--text-title);
 }
 
 .checkList {
