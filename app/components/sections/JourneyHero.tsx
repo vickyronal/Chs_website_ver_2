@@ -5,6 +5,7 @@ import { JourneyPath } from "../journey/JourneyPath";
 import { Button } from "../ui/Button";
 import { Cluster } from "../ui/Layout";
 import { Eyebrow, Heading, RichText } from "../ui/Typography";
+import { Sky } from "./Sky";
 import styles from "./JourneyHero.module.css";
 
 // Tilt and height of each card along the flight path (repeats if more cards)
@@ -24,16 +25,17 @@ interface JourneyHeroProps {
 }
 
 /**
- * The homepage hero: a CHS Black rounded panel with a big headline and
+ * The homepage hero: a framed sky (gradient + soft clouds) with a big headline and
  * destination photo cards sitting along the red flight path from the logo.
  */
 export function JourneyHero({ eyebrow, heading, intro, destinations, whatsapp }: JourneyHeroProps) {
   return (
     <section className={styles.frame} aria-labelledby="hero-heading">
       <div className={styles.panel}>
+        <Sky />
         <div className={styles.text}>
-          <Eyebrow tone="white">{eyebrow}</Eyebrow>
-          <Heading as="h1" size="display" tone="white" align="center" id="hero-heading">
+          <Eyebrow tone="ink">{eyebrow}</Eyebrow>
+          <Heading as="h1" size="display" align="center" id="hero-heading">
             <RichText text={heading} />
           </Heading>
           <p className={styles.intro}>{intro}</p>
@@ -51,7 +53,7 @@ export function JourneyHero({ eyebrow, heading, intro, destinations, whatsapp }:
 
         {destinations.length > 0 && (
           <div className={styles.journey}>
-            <JourneyPath tone="dark" className={styles.path} />
+            <JourneyPath tone="sky" className={styles.path} />
             <ul className={styles.cards} aria-label="Featured destinations">
               {destinations.slice(0, 4).map((d, i) => {
                 const pose = CARD_POSES[i % CARD_POSES.length];

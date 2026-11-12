@@ -7,8 +7,8 @@
   position: relative;
   overflow: hidden;
   border-radius: var(--radius-frame);
-  background: var(--color-ink);
-  color: var(--color-white);
+  background: var(--sky-2); /* fallback under the Sky layer */
+  color: var(--color-ink);
   padding-top: clamp(var(--space-12), 8vw, var(--space-24));
 }
 
@@ -27,7 +27,12 @@
 .intro {
   max-width: 34rem;
   font-size: var(--text-lg);
-  color: rgb(255 255 255 / 0.78);
+  color: var(--color-ink-soft);
+}
+
+/* Grey half of the headline, tuned for the sky (still ≥3:1 for large text) */
+.text em {
+  color: var(--color-on-sky-muted);
 }
 
 .ctas {
@@ -37,6 +42,7 @@
 
 .journey {
   position: relative;
+  z-index: 1;
   margin-top: var(--space-8);
 }
 

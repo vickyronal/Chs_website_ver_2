@@ -53,7 +53,7 @@ export function Muted({ children }: { children: ReactNode }) {
 }
 
 /** Small uppercase label above a heading, e.g. "YOUR NEXT DESTINATION" */
-export function Eyebrow({ children, tone = "accent" }: { children: ReactNode; tone?: "accent" | "muted" | "white" }) {
+export function Eyebrow({ children, tone = "accent" }: { children: ReactNode; tone?: "accent" | "muted" | "white" | "ink" }) {
   return <p className={[styles.eyebrow, styles[`eyebrow-${tone}`]].join(" ")}>{children}</p>;
 }
 

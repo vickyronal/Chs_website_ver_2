@@ -18,7 +18,18 @@ html {
 
 body {
   min-height: 100svh;
-  background: var(--color-paper);
+  /* "A day in the sky": morning haze at the top, clear white through the middle,
+     warm evening light towards the final call to action. Behind all content. */
+  background-color: var(--color-paper);
+  background-image: linear-gradient(
+    180deg,
+    var(--sky-4) 0,
+    var(--color-paper) 1400px,
+    var(--color-paper) calc(100% - 2600px),
+    var(--sunset-1) calc(100% - 1700px),
+    var(--sunset-2) calc(100% - 700px),
+    var(--sunset-3) 100%
+  );
   color: var(--color-ink);
   font-family: var(--font-sans);
   font-size: var(--type-body);

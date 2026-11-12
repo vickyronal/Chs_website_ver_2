@@ -9,8 +9,10 @@
   position: relative;
 }
 
-.paper { background: var(--color-paper); color: var(--color-ink); }
-.surface { background: var(--color-surface); color: var(--color-ink); }
+/* "paper" sections are transparent so the page's sky-to-sunset atmosphere shows through */
+.paper { background: transparent; color: var(--color-ink); }
+/* "surface" bands are a soft, slightly see-through tint rather than a flat grey block */
+.surface { background: color-mix(in srgb, var(--color-surface) 72%, transparent); color: var(--color-ink); }
 .ink { background: var(--color-ink); color: var(--color-white); }
 
 .spacing-default { padding-block: var(--section-pad); }

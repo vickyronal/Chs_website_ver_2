@@ -13,8 +13,8 @@ import styles from "./JourneyPath.module.css";
 const PATH = `M${SWOOSH.start.join(" ")} ${SWOOSH.curves.map((c) => `C ${c.join(" ")}`).join(" ")}`;
 
 interface JourneyPathProps {
-  /** "dark" = on the black hero panel (white plane); "light" = on white sections (black plane) */
-  tone?: "dark" | "light";
+  /** "dark" = on black (white plane) · "light" = on white (black plane) · "sky" = on the sky hero (red plane) */
+  tone?: "dark" | "light" | "sky";
   className?: string;
 }
 

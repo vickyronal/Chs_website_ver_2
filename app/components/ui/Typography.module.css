@@ -53,6 +53,7 @@
 .eyebrow-accent { color: var(--color-accent); }
 .eyebrow-muted { color: var(--color-muted); }
 .eyebrow-white { color: var(--color-white); }
+.eyebrow-ink { color: var(--color-ink); }
 
 .lead {
   max-width: 36rem;

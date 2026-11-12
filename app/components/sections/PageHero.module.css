@@ -82,3 +82,25 @@
   color: var(--color-white);
   text-decoration: underline;
 }
+
+/* ---------- Sky variant (pages without a photo) ---------- */
+.withSky {
+  background: var(--sky-3);
+  color: var(--color-ink);
+}
+
+.withSky .intro {
+  color: var(--color-ink-soft);
+}
+
+.withSky .crumbs {
+  color: var(--color-ink-soft);
+}
+
+.withSky .crumbs a:hover {
+  color: var(--color-ink);
+}
+
+.withSky :global(em) {
+  color: var(--color-on-sky-muted);
+}

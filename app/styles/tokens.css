@@ -25,6 +25,17 @@
   --color-whatsapp: #25d366; /* WhatsApp glyph only */
   --color-overlay: rgb(26 26 26 / 0.45); /* dark tint over photos so text is readable */
 
+  /* Atmosphere ("a day in the sky"): backgrounds ONLY, never text or buttons */
+  --sky-1: #74ade2; /* upper sky */
+  --sky-2: #9fc7ee;
+  --sky-3: #cfe3f6;
+  --sky-4: #eef5fc; /* horizon haze */
+  --sunset-1: #fdf3ea;
+  --sunset-2: #fbe1cd;
+  --sunset-3: #f6c6a4; /* warm evening near the final call to action */
+  --color-ink-soft: #2f3d4a; /* body text on sky backgrounds */
+  --color-on-sky-muted: #44596c; /* grey half of headlines on sky (passes 3:1 for large text) */
+
   /* ================= TYPOGRAPHY SYSTEM =================
      One family, two cuts:
      - Inter Tight: headlines. A modern grotesk set at light–medium weight with
