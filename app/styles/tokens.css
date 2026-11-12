@@ -26,23 +26,23 @@
   --color-overlay: rgb(26 26 26 / 0.45); /* dark tint over photos so text is readable */
 
   /* ================= TYPOGRAPHY SYSTEM =================
-     Two families, each with one job:
-     - Instrument Serif: headlines only. A fine, high-contrast editorial serif with a
-       single regular weight, so headlines feel elegant rather than heavy. Its italic
-       carries the CHS Red emphasis words.
+     One family, two cuts:
+     - Inter Tight: headlines. A modern grotesk set at light–medium weight with
+       tight letter-spacing: confident, never heavy.
      - Inter: everything people read or tap (body, navigation, buttons, labels).
        Matches the CHS brand sheet.
+     Emphasis is two-tone: the key phrase in ink, the rest in grey (see <Muted>/<Em>).
      Sizes are fluid: they grow smoothly from phone (≈375px) to desktop (≈1440px). */
-  --font-serif: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+  --font-display: "Inter Tight Variable", "Inter Variable", system-ui, sans-serif;
   --font-sans: "Inter Variable", system-ui, -apple-system, "Segoe UI", sans-serif;
 
-  /* Headline scale (serif) */
-  --type-display: clamp(2.875rem, 1.75rem + 4.8vw, 6.5rem); /* 46 → 104px: hero */
-  --type-h1: clamp(2.5rem, 1.7rem + 3.4vw, 5rem); /* 40 → 80px: page titles */
-  --type-h2: clamp(2.125rem, 1.6rem + 2.2vw, 3.75rem); /* 34 → 60px: section titles */
-  --type-h3: clamp(1.625rem, 1.4rem + 0.9vw, 2.25rem); /* 26 → 36px: card / block titles */
-  --type-h4: clamp(1.375rem, 1.25rem + 0.5vw, 1.625rem); /* 22 → 26px: small serif titles */
-  --type-mega: clamp(5.5rem, 1rem + 19vw, 19rem); /* edge-cropped wordmarks */
+  /* Headline scale (display) */
+  --type-display: clamp(2.5rem, 1.55rem + 4vw, 5.5rem); /* 40 → 88px: hero */
+  --type-h1: clamp(2.25rem, 1.6rem + 2.8vw, 4.25rem); /* 36 → 68px: page titles */
+  --type-h2: clamp(1.875rem, 1.45rem + 1.8vw, 3.25rem); /* 30 → 52px: section titles */
+  --type-h3: clamp(1.375rem, 1.2rem + 0.7vw, 1.875rem); /* 22 → 30px: card / block titles */
+  --type-h4: clamp(1.125rem, 1.05rem + 0.3vw, 1.3125rem); /* 18 → 21px: small titles */
+  --type-mega: clamp(4.5rem, 1rem + 15vw, 15rem); /* edge-cropped wordmarks */
 
   /* Reading scale (sans) */
   --type-lead: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem); /* 17 → 20px: intros */
@@ -52,22 +52,25 @@
   --type-nav: 0.875rem; /* 14px: navigation */
   --type-label: 0.75rem; /* 12px: eyebrows, uppercase labels */
 
-  /* Weights (Inter is variable, so in-between weights are free) */
+  /* Weights (both fonts are variable, so in-between weights are free) */
+  --weight-light: 350;
+  --weight-display: 450; /* headlines: just above regular, never bold */
   --weight-regular: 400;
   --weight-book: 450;
   --weight-medium: 500;
   --weight-semibold: 600;
 
   /* Line height */
-  --leading-display: 0.98;
-  --leading-heading: 1.04;
-  --leading-title: 1.15;
+  --leading-display: 1;
+  --leading-heading: 1.06;
+  --leading-title: 1.2;
   --leading-snug: 1.35;
   --leading-body: 1.65;
 
-  /* Letter spacing */
-  --tracking-display: -0.022em;
-  --tracking-heading: -0.012em;
+  /* Letter spacing (grotesks need tighter tracking as they get bigger) */
+  --tracking-display: -0.035em;
+  --tracking-heading: -0.028em;
+  --tracking-title: -0.016em;
   --tracking-ui: -0.005em;
   --tracking-label: 0.14em;
 
@@ -81,7 +84,7 @@
   --text-h1: var(--type-h1);
   --text-display: var(--type-display);
   --text-mega: var(--type-mega);
-  --text-title: var(--type-h4); /* small serif titles (menus, itinerary days, list rows) */
+  --text-title: var(--type-h4); /* small display titles (menus, itinerary days, list rows) */
   --leading-tight: var(--leading-heading);
 
   /* Spacing (4px base) */

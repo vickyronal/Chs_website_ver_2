@@ -23,7 +23,7 @@ export default function Experiences({ loaderData }: Route.ComponentProps) {
       <PageHero
         crumbs={[{ label: "Home", to: "/" }, { label: "Experiences" }]}
         eyebrow="Travel experiences"
-        title="Not sure where to *go?*"
+        title="Not sure *where to go?*"
         intro="Start with the kind of trip you have in mind. We'll suggest places that fit."
       />
       <Section spacing="compact">

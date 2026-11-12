@@ -3,8 +3,7 @@ import type { ReactNode } from "react";
 import type { Route } from "./+types/root";
 
 // Self-hosted fonts (no Google Fonts request → faster + more private)
-import "@fontsource/instrument-serif/latin-400.css";
-import "@fontsource/instrument-serif/latin-400-italic.css";
+import "@fontsource-variable/inter-tight";
 import "@fontsource-variable/inter";
 import "./styles/global.css";
 

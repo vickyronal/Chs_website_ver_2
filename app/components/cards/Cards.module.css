@@ -96,8 +96,10 @@
 
 .overlayTitle {
   color: var(--color-white);
-  font-size: clamp(2rem, 1.5rem + 1.8vw, 2.875rem);
+  font-size: clamp(1.625rem, 1.3rem + 1.2vw, 2.25rem);
+  font-weight: var(--weight-display);
   line-height: var(--leading-heading);
+  letter-spacing: var(--tracking-heading);
 }
 
 .overlayArrow {

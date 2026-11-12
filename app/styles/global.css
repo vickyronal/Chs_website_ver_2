@@ -51,8 +51,8 @@ select {
 h1,
 h2,
 h3 {
-  font-family: var(--font-serif);
-  font-weight: var(--weight-regular);
+  font-family: var(--font-display);
+  font-weight: var(--weight-display);
   line-height: var(--leading-heading);
   letter-spacing: var(--tracking-heading);
   text-wrap: balance;
@@ -60,7 +60,7 @@ h3 {
 
 h1 { font-size: var(--type-h1); }
 h2 { font-size: var(--type-h2); }
-h3 { font-size: var(--type-h3); line-height: var(--leading-title); }
+h3 { font-size: var(--type-h3); font-weight: var(--weight-medium); line-height: var(--leading-title); letter-spacing: var(--tracking-title); }
 
 p {
   text-wrap: pretty;

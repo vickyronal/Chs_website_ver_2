@@ -26,7 +26,7 @@ export default function Destinations({ loaderData }: Route.ComponentProps) {
       <PageHero
         crumbs={[{ label: "Home", to: "/" }, { label: "Destinations" }]}
         eyebrow="Destinations"
-        title="Places worth the *journey*"
+        title="Places worth *the journey*"
         intro="Pick a place to see its holidays, or tell us where you'd like to go on WhatsApp."
       />
       <RegionSection id="india" title="India" items={india} />

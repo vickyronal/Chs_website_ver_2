@@ -18,8 +18,8 @@ interface HeadingProps {
 }
 
 /**
- * Serif headline. Combine with <Em> and <Muted> for the two-tone effect:
- *   <Heading>Your next <Em>journey</Em> starts here</Heading>
+ * Display headline (Inter Tight). Two-tone: wrap the second half in <Em> to set it in grey:
+ *   <Heading>Your next journey <Em>starts here</Em></Heading>
  */
 export function Heading({ children, as: Tag = "h2", size, align = "start", tone = "ink", className, id }: HeadingProps) {
   const visualSize = size ?? Tag;
@@ -30,14 +30,14 @@ export function Heading({ children, as: Tag = "h2", size, align = "start", tone 
   );
 }
 
-/** Emphasised word: italic serif in CHS Red */
+/** Second half of a two-tone headline: set in grey */
 export function Em({ children }: { children: ReactNode }) {
   return <em className={styles.em}>{children}</em>;
 }
 
 /**
  * Turns copy like "Your next *journey* starts here" into text with the
- * starred words in italic CHS Red. Lets editors (and later the CMS) control emphasis.
+ * starred words in grey (two-tone headline). Lets editors (and later the CMS) control emphasis.
  */
 export function RichText({ text }: { text: string }) {
   return (

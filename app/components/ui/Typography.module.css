@@ -1,22 +1,27 @@
 .heading {
-  font-family: var(--font-serif);
-  font-weight: var(--weight-regular);
+  font-family: var(--font-display);
+  font-weight: var(--weight-display);
   line-height: var(--leading-heading);
   letter-spacing: var(--tracking-heading);
   text-wrap: balance;
   font-kerning: normal;
 }
 
-/* Hero headline: large but light, tight leading, narrow measure so it sets in 2–3 lines */
+/* Hero headline: large but light, tight leading and tracking */
 .display {
-  max-width: 15ch;
+  max-width: 17ch;
   font-size: var(--type-display);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
 }
 .h1 { font-size: var(--type-h1); max-width: 20ch; }
-.h2 { font-size: var(--type-h2); max-width: 22ch; }
-.h3 { font-size: var(--type-h3); line-height: var(--leading-title); }
+.h2 { font-size: var(--type-h2); max-width: 24ch; }
+.h3 {
+  font-size: var(--type-h3);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-title);
+  letter-spacing: var(--tracking-title);
+}
 
 .start { text-align: start; }
 .center { text-align: center; margin-inline: auto; }
@@ -24,18 +29,17 @@
 .ink { color: var(--color-ink); }
 .white { color: var(--color-white); }
 
-/* Italic red emphasis — the CHS take on two-tone headlines.
-   Brand red is fine here because headline text is "large text" (3:1 needed). */
-.em {
-  font-style: italic;
-  color: var(--color-brand);
-  /* the italic sits slightly narrower; a hair of extra spacing keeps the rhythm even */
-  letter-spacing: -0.005em;
-  padding-right: 0.04em;
+/* Two-tone headlines: the emphasised phrase sits back in grey,
+   so the first half reads as the statement and the rest as its echo. */
+.em,
+.muted {
+  font-style: normal;
+  color: var(--color-muted);
 }
 
-.muted {
-  color: var(--color-muted);
+.white .em,
+.white .muted {
+  color: rgb(255 255 255 / 0.58);
 }
 
 .eyebrow {
@@ -65,14 +69,15 @@
 }
 
 .mega {
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: var(--text-mega);
-  line-height: 0.82;
+  font-weight: var(--weight-medium);
+  line-height: 0.85;
   white-space: nowrap;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.06em;
   /* nudge left so the first letter bleeds slightly off the edge */
   margin-left: -0.04em;
 }
-.mega-red { color: var(--color-brand); font-style: italic; }
+.mega-red { color: var(--color-brand); }
 .mega-ink { color: var(--color-ink); }
 .mega-faint { color: rgb(255 255 255 / 0.08); }

@@ -12,7 +12,7 @@ export interface Crumb {
 
 interface PageHeroProps {
   eyebrow?: string;
-  /** Use *stars* around words to make them italic CHS Red */
+  /** Use *stars* around the second half to set it in grey (two-tone) */
   title: string;
   intro?: string;
   /** With a photo: the photo fills the panel. Without: a plain CHS Black panel. */

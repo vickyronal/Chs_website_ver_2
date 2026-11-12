@@ -77,7 +77,7 @@ export function ThemeSlider({ themes }: { themes: Theme[] }) {
       <Container>
         <Stack gap={4} align="center">
           <Heading id="themes-heading" align="center">
-            Not sure where to <Em>go?</Em>
+            Not sure <Em>where to go?</Em>
           </Heading>
           <Lead align="center">Start with the kind of trip you have in mind.</Lead>
         </Stack>
@@ -162,7 +162,7 @@ export function DestinationShowcase({ destinations }: { destinations: Destinatio
           <div className={styles.showcaseText}>
             <Eyebrow>Popular destinations</Eyebrow>
             <Heading id="destinations-heading">
-              Places worth the <Em>journey</Em>
+              Places worth <Em>the journey</Em>
             </Heading>
             <Lead>From the hills at home to islands abroad. Pick a place and we'll plan the rest.</Lead>
             {regions.length > 1 && (

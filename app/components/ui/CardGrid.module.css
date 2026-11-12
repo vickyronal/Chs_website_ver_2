@@ -19,7 +19,9 @@
 
 .emptyTitle {
   max-width: 30rem;
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: var(--text-h3);
-  line-height: var(--leading-snug);
+  font-weight: var(--weight-display);
+  line-height: var(--leading-title);
+  letter-spacing: var(--tracking-title);
 }

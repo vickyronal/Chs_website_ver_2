@@ -114,9 +114,11 @@
 }
 
 .dayTitle {
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: var(--text-title);
+  font-weight: var(--weight-medium);
   line-height: var(--leading-title);
+  letter-spacing: var(--tracking-title);
 }
 
 .chevron {
@@ -212,9 +214,11 @@ details[open] .chevron {
 }
 
 .panelPrice {
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: var(--text-h3);
-  line-height: var(--leading-snug);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-title);
+  letter-spacing: var(--tracking-title);
 }
 
 .panelMeta {

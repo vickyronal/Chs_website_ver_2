@@ -8,8 +8,8 @@ import type { Reason } from "../types/content";
 
 export const hero = {
   eyebrow: "Domestic · International · Corporate",
-  // Words inside *asterisks* render in italic CHS Red
-  heading: "Your next *journey* starts with a conversation",
+  // Words inside *asterisks* render in grey (the second half of a two-tone headline)
+  heading: "Your next journey *starts with a conversation*",
   intro: "Fixed holiday packages in India and around the world, planned with you on WhatsApp.",
 };
 

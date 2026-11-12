@@ -42,7 +42,7 @@ export default function Holidays({ loaderData }: Route.ComponentProps) {
       <PageHero
         crumbs={[{ label: "Home", to: "/" }, { label: "Holidays" }]}
         eyebrow="Holiday packages"
-        title="Ready-made trips, *planned* down to the day"
+        title="Ready-made trips, *planned down to the day*"
         intro="Fixed packages in India and abroad. Filter by where, what kind of trip and how long, then plan the details with us on WhatsApp."
       />
       <Section spacing="compact">

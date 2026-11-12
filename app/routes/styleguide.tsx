@@ -63,7 +63,7 @@ export default function Styleguide() {
           <Container className={styles.heroText}>
             <Eyebrow tone="white">Hero preview · sample copy</Eyebrow>
             <Heading as="h1" size="display" tone="white" align="center">
-              Your next <Em>journey</Em> starts with a conversation
+              Your next journey <Em>starts with a conversation</Em>
             </Heading>
             <Cluster>
               <Button href="#" icon="whatsapp" arrow>
@@ -122,7 +122,7 @@ export default function Styleguide() {
           <Stack gap={8}>
             <Eyebrow>Typography · Fraunces + Inter</Eyebrow>
             <Heading as="h2" size="display">
-              Travel is more than <Em>moving</Em>
+              Travel is more <Em>than moving</Em>
             </Heading>
             <Heading as="h2" size="h1">
               Unforgettable moments <Muted>in the heart of</Muted> Kerala
@@ -226,7 +226,7 @@ export default function Styleguide() {
             <Stack gap={6} align="start">
               <Eyebrow>Your next destination</Eyebrow>
               <Heading>
-                Places worth the <Em>journey</Em>
+                Places worth <Em>the journey</Em>
               </Heading>
               <Lead>Card style 2 in a "staggered" slider, with the arrows placed beside the text.</Lead>
               <CarouselControls api={destinationsApi} className={styles.splitControls} />
