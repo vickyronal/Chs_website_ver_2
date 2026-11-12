@@ -4,7 +4,8 @@
   Serves the built site from build/client exactly like a static host
   (Netlify, Vercel, etc.) would:
     /holidays/bali-sample  →  build/client/holidays/bali-sample/index.html
-  Unknown URLs get the SPA fallback page, which shows the site's 404 page.
+  Unknown URLs get 404.html (with a 404 status), which shows the site's own
+  "Page not found" page, the same way Vercel and Netlify do.
 
   (Vite's own `vite preview` serves the homepage for nested URLs, which
   breaks pre-rendered pages, so we use this tiny server instead.)
@@ -49,7 +50,7 @@ async function resolve(urlPath) {
   if (await isFile(full)) return { file: full, status: 200 };
   const index = path.join(full, "index.html");
   if (await isFile(index)) return { file: index, status: 200 };
-  return { file: path.join(root, "__spa-fallback.html"), status: 404 };
+  return { file: path.join(root, "404.html"), status: 404 };
 }
 
 createServer(async (req, res) => {
