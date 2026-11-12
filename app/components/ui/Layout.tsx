@@ -39,7 +39,7 @@ export function Stack({
   className,
 }: {
   children: ReactNode;
-  gap?: 2 | 4 | 6 | 8 | 12;
+  gap?: 2 | 4 | 6 | 8 | 12 | 16;
   align?: "stretch" | "start" | "center";
   className?: string;
 }) {

@@ -12,13 +12,12 @@
   - "fan"        cards rotate into an arc that opens as you scroll to it (desktop);
                  on phones it becomes a normal row
 */
-import { Children, useRef, useSyncExternalStore, type CSSProperties, type ReactNode } from "react";
+import { Children, useRef, type CSSProperties, type ReactNode } from "react";
 import { useInView } from "motion/react";
+import { useHydrated } from "../../lib/useHydrated";
 import { useCarousel, type CarouselApi } from "./useCarousel";
 import { Icon } from "../ui/Icon";
 import styles from "./Carousel.module.css";
-
-const noopSubscribe = () => () => {};
 
 interface CarouselProps {
   /** Accessible name, e.g. "Kinds of holiday" */
@@ -51,11 +50,7 @@ export function Carousel({
   const open = useInView(rootRef, { amount: 0.35, once: true });
   // Before JavaScript loads, the fan shows OPEN (so it never looks broken).
   // Once loaded, it closes until scrolled into view, then animates open.
-  const ready = useSyncExternalStore(
-    noopSubscribe,
-    () => true, // in the browser
-    () => false, // during pre-rendering / before hydration
-  );
+  const ready = useHydrated();
   const items = Children.toArray(children);
   const centre = (items.length - 1) / 2;
 

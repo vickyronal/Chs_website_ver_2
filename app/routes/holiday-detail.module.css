@@ -1,0 +1,36 @@
+.layout {
+  display: grid;
+  gap: var(--space-12);
+}
+
+.main {
+  min-width: 0;
+}
+
+.block {
+  display: grid;
+  gap: var(--space-6);
+  scroll-margin-top: 150px; /* so headings aren't hidden under the sticky header + section nav */
+}
+
+.lead {
+  max-width: 44rem;
+  font-size: var(--text-lg);
+}
+
+@media (min-width: 1024px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr) 22rem;
+    align-items: start;
+  }
+
+  /* The enquiry panel follows you down the page */
+  .side {
+    position: sticky;
+    top: 100px;
+  }
+}
+
+.similar {
+  scroll-margin-top: 90px;
+}

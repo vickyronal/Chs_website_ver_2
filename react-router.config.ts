@@ -2,11 +2,14 @@ import type { Config } from "@react-router/dev/config";
 
 // React Router "framework mode" settings.
 // ssr: false   → no server is needed to run the site; it builds to static files.
-// prerender    → at build time, every listed page is turned into a real HTML file,
+// prerender    → at build time, every page below is turned into a real HTML file,
 //                so Google and WhatsApp/Facebook link previews see full content.
-//                `true` = all static URLs. Package and destination slugs will be
-//                added here in Phase 4, read from the content data.
 export default {
   ssr: false,
-  prerender: true,
+  async prerender({ getStaticPaths }) {
+    // Every package, destination and experience URL comes from the content data,
+    // so adding a package automatically creates its page.
+    const { getDynamicPaths } = await import("./app/lib/content");
+    return [...getStaticPaths(), ...getDynamicPaths()];
+  },
 } satisfies Config;

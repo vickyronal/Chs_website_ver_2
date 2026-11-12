@@ -10,7 +10,8 @@ export type WhatsAppContext =
   | { kind: "destination"; name: string }
   | { kind: "theme"; name: string }
   | { kind: "package"; title: string; nights: number; days: number; destination: string; url?: string }
-  | { kind: "corporate" };
+  | { kind: "corporate" }
+  | { kind: "search"; where?: string | null; theme?: string | null; month?: string | null };
 
 export function whatsappMessage(context: WhatsAppContext = { kind: "general" }): string {
   const hi = `Hi ${site.name},`;
@@ -18,13 +19,23 @@ export function whatsappMessage(context: WhatsAppContext = { kind: "general" }):
     case "destination":
       return `${hi} I'm planning a trip to ${context.name}. Could you share some options?`;
     case "theme":
-      return `${hi} I'm looking for a ${context.name.toLowerCase()} holiday. Could you share some options?`;
+      return `${hi} I'm interested in your ${context.name} packages. Could you share some options?`;
     case "package":
       return `${hi} I'm interested in "${context.title}" (${context.nights}N/${context.days}D, ${context.destination}).${
         context.url ? ` ${context.url}` : ""
       }`;
     case "corporate":
       return `${hi} I'd like to discuss corporate travel for our team.`;
+    case "search": {
+      const parts = [
+        context.where && `Destination: ${context.where}`,
+        context.theme && `Type: ${context.theme}`,
+        context.month && `Month: ${context.month}`,
+      ].filter(Boolean);
+      return parts.length
+        ? `${hi} I'm planning a holiday. ${parts.join(", ")}. Could you share some options?`
+        : `${hi} I'd like help planning a holiday.`;
+    }
     default:
       return `${hi} I'd like help planning a holiday.`;
   }

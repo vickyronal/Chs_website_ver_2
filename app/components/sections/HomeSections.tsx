@@ -4,6 +4,7 @@
 */
 import { useState } from "react";
 import { Form, Link } from "react-router";
+import { MONTHS } from "../../lib/filters";
 import type { Destination, HolidayPackage, Reason, Region, Theme } from "../../types/content";
 import { Carousel, CarouselControls } from "../carousel/Carousel";
 import { useCarousel } from "../carousel/useCarousel";
@@ -18,7 +19,6 @@ import styles from "./HomeSections.module.css";
 /* ---------------------------------------------------------------
    QUICK FINDER: Where · Kind of holiday · Month → /holidays?…
 ---------------------------------------------------------------- */
-const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 export function QuickFinder({ destinations, themes }: { destinations: Destination[]; themes: Theme[] }) {
   return (
