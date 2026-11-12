@@ -26,3 +26,8 @@ dist-ssr
 # React Router
 /build
 /.react-router
+
+# Secrets: never commit environment files (API keys etc.)
+.env
+.env.*
+!.env.example
