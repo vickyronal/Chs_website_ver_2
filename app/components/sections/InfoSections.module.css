@@ -1,0 +1,429 @@
+/* ---------- Statement ---------- */
+.statementWrap {
+  display: grid;
+  gap: var(--space-8);
+  justify-items: start;
+}
+
+.statement {
+  max-width: 30ch;
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 1.3rem + 1.9vw, 3rem);
+  font-weight: var(--weight-display);
+  line-height: var(--leading-title);
+  letter-spacing: var(--tracking-heading);
+  text-wrap: pretty;
+}
+
+/* ---------- Shared head + numbers ---------- */
+.listHead {
+  display: grid;
+  gap: var(--space-4);
+  justify-items: start;
+  margin-bottom: var(--space-12);
+}
+
+.num {
+  font-size: var(--type-label);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-label);
+  color: var(--color-accent);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Offering rows ---------- */
+.rows {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--color-ink);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  gap: var(--space-3) var(--space-4);
+  padding: var(--space-8) 0;
+  border-bottom: 1px solid var(--color-line);
+  scroll-margin-top: 110px;
+}
+
+.row > .num {
+  padding-top: 0.55em;
+}
+
+.rowMain {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.rowTitle {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--type-h3);
+}
+
+.rowBody {
+  max-width: 44ch;
+  color: var(--color-muted);
+}
+
+.points {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-6);
+  margin: var(--space-2) 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--type-small);
+}
+
+.points li::before {
+  content: "—";
+  margin-right: var(--space-2);
+  color: var(--color-accent);
+}
+
+.rowAction {
+  grid-column: 2;
+}
+
+@media (min-width: 900px) {
+  .row {
+    grid-template-columns: 4rem minmax(0, 1fr) auto;
+    align-items: start;
+  }
+
+  .rowAction {
+    grid-column: 3;
+    padding-top: var(--space-1);
+  }
+}
+
+/* ---------- Steps ---------- */
+.steps {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--color-ink);
+}
+
+.step {
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+  padding: var(--space-6) 0 var(--space-8);
+  border-bottom: 1px solid var(--color-line);
+}
+
+.stepTitle {
+  margin-top: var(--space-6);
+  font-size: var(--type-h4);
+}
+
+.stepBody {
+  font-size: var(--type-small);
+  color: var(--color-muted);
+}
+
+@media (min-width: 640px) {
+  .steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .step {
+    padding-right: var(--space-6);
+  }
+
+  .step:nth-child(even) {
+    padding-left: var(--space-6);
+    border-left: 1px solid var(--color-line);
+  }
+}
+
+@media (min-width: 1024px) {
+  .steps {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .step {
+    border-bottom: 0;
+    padding: var(--space-8) var(--space-6) 0;
+  }
+
+  .step:first-child {
+    padding-left: 0;
+  }
+
+  .step + .step {
+    border-left: 1px solid var(--color-line);
+  }
+}
+
+/* ---------- Prose ---------- */
+.prose {
+  display: grid;
+  gap: var(--space-8);
+}
+
+.proseBody {
+  display: grid;
+  gap: var(--space-4);
+  max-width: 40rem;
+  font-size: var(--type-lead);
+  color: var(--color-ink-soft);
+}
+
+@media (min-width: 900px) {
+  .prose {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+    gap: var(--space-16);
+  }
+}
+
+/* ---------- FAQ ---------- */
+.faq,
+.legal {
+  display: grid;
+  gap: var(--space-8);
+}
+
+.faqNav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.faqNav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding-inline: var(--space-4);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  background: var(--color-white);
+  font-size: var(--type-small);
+  font-weight: var(--weight-medium);
+  color: var(--color-ink);
+  text-decoration: none;
+}
+
+.faqNav a:hover {
+  border-color: var(--color-ink);
+  color: var(--color-ink);
+}
+
+@media (min-width: 1024px) {
+  .faq,
+  .legal {
+    grid-template-columns: 16rem minmax(0, 1fr);
+    gap: var(--space-16);
+    align-items: start;
+  }
+
+  .faqNav {
+    position: sticky;
+    top: 110px;
+  }
+
+  .faqNav ul {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.faqGroups {
+  display: grid;
+  gap: var(--space-16);
+}
+
+.faqGroup {
+  scroll-margin-top: 110px;
+}
+
+.faqGroupTitle {
+  margin-bottom: var(--space-4);
+  font-size: var(--type-h3);
+}
+
+.faqItems {
+  border-top: 1px solid var(--color-ink);
+}
+
+.faqItem {
+  border-bottom: 1px solid var(--color-line);
+}
+
+.faqItem summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  min-height: var(--tap-min);
+  padding: var(--space-5, 1.25rem) 0;
+  font-size: var(--type-body);
+  font-weight: var(--weight-medium);
+  cursor: pointer;
+  list-style: none;
+}
+
+.faqItem summary::-webkit-details-marker {
+  display: none;
+}
+
+.faqItem p {
+  max-width: 60ch;
+  padding-bottom: var(--space-6);
+  color: var(--color-muted);
+}
+
+/* + that turns into − */
+.plus {
+  position: relative;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--color-line);
+  border-radius: 50%;
+}
+
+.plus::before,
+.plus::after {
+  content: "";
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: 12px;
+  height: 1.5px;
+  background: var(--color-ink);
+  translate: -50% -50%;
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.plus::after {
+  transform: rotate(90deg);
+}
+
+details[open] .plus::after {
+  transform: rotate(0deg);
+}
+
+/* ---------- Contact ---------- */
+.contactGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contactCard {
+  display: grid;
+  gap: var(--space-1);
+  height: 100%;
+  padding: var(--space-6);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  background: rgb(255 255 255 / 0.8);
+  color: var(--color-ink);
+  text-decoration: none;
+  transition: border-color var(--duration-fast), transform var(--duration-fast) var(--ease-out);
+}
+
+a.contactCard:hover {
+  border-color: var(--color-ink);
+  color: var(--color-ink);
+  transform: translateY(-2px);
+}
+
+.contactIcon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: var(--space-6);
+  border-radius: 50%;
+  background: var(--color-surface);
+  color: var(--color-ink);
+}
+
+.contactLabel {
+  font-size: var(--type-label);
+  font-weight: var(--weight-medium);
+  color: var(--color-muted);
+}
+
+.contactValue {
+  font-family: var(--font-display);
+  font-size: var(--type-h4);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-title);
+  overflow-wrap: anywhere;
+}
+
+.contactNote {
+  font-size: var(--type-small);
+  color: var(--color-muted);
+}
+
+.contactPrimary {
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+  color: var(--color-white);
+}
+
+a.contactPrimary:hover {
+  color: var(--color-white);
+  border-color: var(--color-accent-hover);
+}
+
+.contactPrimary .contactIcon {
+  background: rgb(255 255 255 / 0.18);
+  color: var(--color-white);
+}
+
+.contactPrimary .contactLabel,
+.contactPrimary .contactNote {
+  color: rgb(255 255 255 / 0.85);
+}
+
+/* ---------- Legal ---------- */
+.legalBody {
+  display: grid;
+  gap: var(--space-8);
+  max-width: 44rem;
+}
+
+.legalNotice {
+  padding: var(--space-4) var(--space-6);
+  border: 1px dashed var(--color-accent);
+  border-radius: var(--radius-media);
+  background: color-mix(in srgb, var(--color-accent) 5%, var(--color-white));
+  font-size: var(--type-small);
+}
+
+.legalSection {
+  display: grid;
+  gap: var(--space-3);
+  scroll-margin-top: 110px;
+}
+
+.legalSection h2 {
+  font-size: var(--type-h4);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-title);
+}
+
+.legalSection p {
+  color: var(--color-muted);
+}
+
+.legalBack {
+  color: var(--color-muted);
+}

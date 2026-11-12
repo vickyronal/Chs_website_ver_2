@@ -7,6 +7,7 @@
 import { destinations } from "../content/destinations";
 import { corporate, hero, reasons, services } from "../content/home";
 import { packages } from "../content/packages";
+import { aboutPage, corporatePage, faqGroups, legalPages, servicesPage, type LegalSlug } from "../content/pages";
 import { themes } from "../content/themes";
 import type { HolidayPackage, Region } from "../types/content";
 
@@ -72,6 +73,27 @@ export function destinationNames(pkg: HolidayPackage) {
 /* ---------- Homepage ---------- */
 export function getHomeContent() {
   return { hero, reasons, services, corporate };
+}
+
+/* ---------- Inner pages ---------- */
+export function getCorporatePage() {
+  return corporatePage;
+}
+
+export function getServicesPage() {
+  return servicesPage;
+}
+
+export function getAboutPage() {
+  return aboutPage;
+}
+
+export function getFaqGroups() {
+  return faqGroups;
+}
+
+export function getLegalPage(slug: LegalSlug) {
+  return legalPages[slug];
 }
 
 /* ---------- All URLs, for pre-rendering and the sitemap ---------- */

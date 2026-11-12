@@ -17,7 +17,8 @@ export type IconName =
   | "close"
   | "search"
   | "calendar"
-  | "compass";
+  | "compass"
+  | "mail";
 
 const paths: Record<IconName, ReactNode> = {
   "arrow-up-right": <path d="M7 17 17 7M8 7h9v9" />,
@@ -60,6 +61,12 @@ const paths: Record<IconName, ReactNode> = {
     <>
       <rect x="3" y="5" width="18" height="16" rx="2" />
       <path d="M16 3v4M8 3v4M3 10h18" />
+    </>
+  ),
+  mail: (
+    <>
+      <rect x="3" y="5" width="18" height="14" rx="2" />
+      <path d="m3 7 9 6 9-6" />
     </>
   ),
   compass: (
